@@ -48,13 +48,26 @@
 				url: 'getAssignments.php',  
 				data: "classID="+class_id,  
 				success: function(data) { 
-				console.log(data);
+					// Fill table with assignment data
+					    // Get add up total points, total score, and calc grade
+					var totalPoints = 0;
+					var totalScore = 0;
 					$("#assignmentsTable").html("");
-					$("#classNameHeader").html("");
-					$("#classNameHeader").html(data[0]["class_name"]+'<span class="grade pull-right">100%</span>');
 					for (var i = 0; i < data.length; i++) {
 						$("#assignmentsTable").append('<tr><td>'+data[i]["week"]+'</td><td>'+data[i]["name"]+'</td><td>'+data[i]["date"]+'</td><td>'+data[i]["points"]+'</td><td contenteditable="true">'+data[i]["score"]+'</td></tr>');
+						totalPoints += parseInt(data[i]["points"]);
+						if (data[i]["score"] != '-') {
+							totalScore += parseInt(data[i]["score"]);
+						}
 					}
+					var grade = (totalScore / totalPoints) * 100;
+					console.log(totalScore);
+					console.log(totalPoints);
+					console.log(grade);
+					
+					$("#classNameHeader").html("");
+					$("#classNameHeader").html(data[0]["class_name"]+'<span class="grade pull-right">'+Math.round(grade * 100) / 100+'%</span>');
+					
 				},
 				dataType: "json"
 			});
