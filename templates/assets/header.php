@@ -45,3 +45,4 @@
       </div>
     </nav>
 	    <div class="container Site-content">
+		<?php displayMessage(); ?>

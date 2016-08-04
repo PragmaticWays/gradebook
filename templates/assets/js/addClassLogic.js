@@ -1,3 +1,15 @@
+function default24rows(tableID) {
+	for (var h = 0; h < 22; h++) {
+		var table = document.getElementById(tableID);
+		var rowCount = table.rows.length;
+		var row = table.insertRow(rowCount);
+		for (var i = 0; i < 5; i++) {
+			var newcell = row.insertCell(i);
+			newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+		}
+	}
+}
+
 function addRow(tableID) {
 	var table = document.getElementById(tableID);
 	var rowCount = table.rows.length;
@@ -15,19 +27,19 @@ function addRow(tableID) {
 }
 
 function deleteRow(tableID) {
-	var table = document.getElementById(tableID);
+	var table = document.getElementById(tableID); 
 	var rowCount = table.rows.length;
-	for(var i=0; i<rowCount; i++) {
+	for(var i = 0; i < rowCount; i++) {
 		var row = table.rows[i];
-		var chkbox = row.cells[0].childNodes[0];
-		if(null != chkbox && true == chkbox.checked) {
-			if(rowCount <= 1) { 						// limit the user from removing all the fields
+		var chkbox = row.cells[0].childNodes[0];		
+		if(chkbox.checked == true) {
+			if(rowCount <= 2) { 						// limit the user from removing all the fields
 				alert("Cannot Remove all the Passenger.");
 				break;
 			}
 			table.deleteRow(i);
 			rowCount--;
 			i--;
-		}
-	}
+		} 
+	} 
 }
