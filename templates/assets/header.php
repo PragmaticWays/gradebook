@@ -25,21 +25,34 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Username's Grades</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<?php if(isLoggedIn()) : ?>
+				<a class="navbar-brand" href="./"><?php echo $_SESSION['name']; ?>'s Grade Book</a>
+			<?php else : ?>
+				<a class="navbar-brand" href="./">My Grade Book</a>
+			<?php endif; ?>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
-            <li><a href="gradebook.php">My Gradebook</a></li>
-			<li><a href="edit-class.php">Edit Class</a></li>
-			<li><a href="login.php">Sign-In</a></li>
-            <li><a href="register.php">Create Account</a></li>
-            <li><a href="about.php">About</a></li>
+			<?php if(isLoggedIn()) : ?>
+				<li><a href="gradebook.php"><span class="glyphicon glyphicon-book"></span> My Gradebook</a></li>
+				<li><a href="edit-class.php"><span class="glyphicon glyphicon-pencil"></span> Edit Class</a></li>
+				<li><a href="about.php"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+				<!-- Logout Link that acts as form -->
+				<form method="post" action="<?php echo BASE_URI; ?>logout.php" class="inline">
+					<input type="hidden" name="do_logout" value="Logout">
+					<button type="submit" name="do_logout" value="Logout" class="logout-button"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+				</form>
+			<?php else : ?>
+				<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Sign-In</a></li>
+				<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Create Account</a></li>
+				<li><a href="about.php"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+			<?php endif; ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

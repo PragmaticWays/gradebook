@@ -1,12 +1,22 @@
 <?php require('core/init.php'); ?>
 <?php
 
-// Get template and assign vars
-$template = new Template('templates/sign_in.php');
+// Create user object
+$user = new User();
 
-// Assign vars
-$template->title = 'Sign In';
+// Create validate object
+$validate = new Validator();
 
-// Display template
-echo $template;
+if (!isLoggedIn()) {
+	// Get template and assign vars
+	$template = new Template('templates/sign_in.php');
+
+	// Assign vars
+	$template->title = 'Sign In';
+
+	// Display template
+	echo $template;
+} else {
+	redirect('./', 'You are already signed-in', 'error');
+}
 ?>

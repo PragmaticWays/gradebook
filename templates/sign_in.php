@@ -1,18 +1,15 @@
 <?php include('assets/header.php'); ?>
      
-	 <div class="block">
-	 <form role="form" method="post" action="logging_in.php">
-			<div class="form-group">
-				<label>Username</label>
-				<input name="username" type="text" class="form-control" placeholder="Username"></input>
-			</div>
-			<div class="form-group">
-				<label>Password</label>
-				<input name="password" type="password" class="form-control" id="testPass" placeholder="Password"></input>
-			</div>
-			<button name="do_login" type="submit" class="btn btn-primary">Login</button> <a class="btn btn-default" href="register.php">Create Account</a>
-		</form>
-	</div>
-
+	<form class="form-signin" role="form" method="post" action="logging_in.php">
+		<h2 class="form-signin-heading">Please sign in</h2>
+	
+		<label for="inputEmail" class="sr-only">Email address</label>
+		<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+	
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+	
+		<button class="btn btn-lg btn-primary btn-block" type="submit" name="do_login">Sign in</button>
+	</form>	
 	 
 <?php include('assets/footer.php'); ?>
