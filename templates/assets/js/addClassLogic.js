@@ -19,6 +19,7 @@ function addRow(tableID) {
 		for(var i = 0; i < colCount; i++) {
 			var newcell = row.insertCell(i);
 			newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+			resetChildren(newcell);
 		}
 	}else{
 		 alert("There is no way you have more than 80 assignments for this one class.");
@@ -42,4 +43,30 @@ function deleteRow(tableID) {
 			i--;
 		} 
 	} 
+}
+
+function resetChildren( parentEl ){
+    var len = parentEl.childNodes.length,
+        i = 0,
+        el;
+
+    for(i = 0; i < len; i++){
+
+        el = parentEl.childNodes[i];
+
+        switch( el.type ){
+            case "text":
+                el.value = "";
+                break;
+            case "checkbox":
+                el.removeAttribute('checked');
+                break;
+            case "select-one":
+                el.selectedIndex = 0;
+                break;
+            case "number":
+                el.value = '';
+                break;
+        }
+    }
 }

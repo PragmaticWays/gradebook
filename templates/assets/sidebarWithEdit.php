@@ -27,7 +27,6 @@
 	</div>
 	 
 	<script>
-		
 		function selectTerm(term) {
 			$.ajax({
 				type: 'POST',
@@ -49,48 +48,43 @@
 				url: 'getAssignments.php',  
 				data: "classID="+class_id,  
 				success: function(data) { 
+				console.log(data);
 					// Fill table with assignment data
 					    // Get add up total points, total score, and calc grade
 					var totalPoints = 0;
 					var totalScore = 0;
 					$("#assignmentsTable").html("");
-					for (var i = 0; i < data.length; i++) {
-						
-						$("#assignmentsTable").append('<tr>'+
-														'<td>'+data[i]["week"]+'</td>'+
-														'<td>'+data[i]["name"]+'</td>'+
-														'<td>'+data[i]["date"]+'</td>'+
-														'<td>'+data[i]["points"]+'</td>'+
-														'<td><input type="text" name="" class="form-control scoreInput" value="'+data[i]["score"]+'"></td>'+
-													  '</tr>');
-						totalPoints += parseInt(data[i]["points"]);
-						if (data[i]["score"] != '-') {
-							totalScore += parseInt(data[i]["score"]);
+					if (data[0]) {
+						for (var i = 0; i < data.length; i++) {
+							$("#assignmentsTable").append('<tr><td><input type="checkbox" name="chk[]" /></td>'+
+															  '<td><input type="text" name="week[]" class="form-control" value="'+data[i]["week"]+'"></td>'+
+															  '<td><input type="text" name="name[]" class="form-control" value="'+data[i]["name"]+'"></td>'+
+															  '<td><input type="text" name="due-date[]" class="form-control" value="'+data[i]["date"]+'"></td>'+
+															  '<td><input type="text" name="points[]" class="form-control" value="'+data[i]["points"]+'"></td>'+
+															  '<input type="hidden" name="assign_ids[]" value="'+data[i]["assign_id"]+'">'+
+														   '</tr>');
+							totalPoints += parseInt(data[i]["points"]);
+							if (data[i]["score"] != '-') {
+								totalScore += parseInt(data[i]["score"]);
+							}
 						}
+					} else {
+						$("#assignmentsTable").append('<tr>'+
+														 '<td><input type="checkbox" name="chk[]" /></td>'+
+														 '<td><input type="text" name="week[]" class="form-control"></td>'+
+														 '<td><input type="text" name="name[]" class="form-control"></td>'+
+														 '<td><input type="text" name="due-date[]" class="form-control"></td>'+
+														 '<td><input type="text" name="points[]" class="form-control"></td>'+
+													   '</tr>');
 					}
-					var grade = (totalScore / totalPoints) * 100;
 					
-					$("#classNameHeader").html("");
-					$("#classNameHeader").html(data[0]["class_name"]+'<span class="grade pull-right">'+Math.round(grade * 100) / 100+'%</span>');
+					var grade = (totalScore / totalPoints) * 100;					
+					
+					$("#classNameInput").val(data[0]["class_name"]);
+					$("#termInput").val(data[0]["term"]);
 				},
 				dataType: "json"
 			});
-		}
-
-		$(function() {
-			$("#assignmentsTable").keypress(function (e) {
-				if (e.which == 13) {		
-					/*
-					$.ajax({
-						type: 'POST',
-						url: 'updateGrade.php',  
-						data: "scores="+scoresArray,  
-						success: function(data) { 
-							alert("here");
-						}
-					});*/
-				}   
-			});
-		}); 
+		}		
 		
 	</script>

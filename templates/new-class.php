@@ -1,3 +1,11 @@
+<?php if(isset($_POST)==true && empty($_POST)==false){ 
+	$chkbox = $_POST['chk'];		// array
+	$weeks=$_POST['week'];        	// array
+	$names=$_POST['name'];	   		// array		
+	$duedates=$_POST['due-date'];  // array
+	$points=$_POST['points'];	   	// array
+}				
+?>
 <?php include('assets/header.php'); ?>
 <?php include('assets/sidebar.php'); ?>
 <script src="<?php echo BASE_URI; ?>templates/assets/js/addClassLogic.js"></script>

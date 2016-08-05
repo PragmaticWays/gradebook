@@ -56,6 +56,30 @@ class User {
 		}
 	}
 	
+	public function updateClass($assign_ids, $weeks, $names, $duedates, $points) {
+		foreach ($assign_ids as $a => $b) {
+			$this->db->query("UPDATE assignments
+							  SET week = :week,
+									name = :name,
+									date = :duedate,
+									points = :point
+							  WHERE id = :assign_id"
+			);
+			// Bind values
+			$this->db->bind(':week', $weeks[$a]);
+			$this->db->bind(':name', $names[$a]);
+			$this->db->bind(':duedate', $duedates[$a]);
+			$this->db->bind(':point', $points[$a]);
+			$this->db->bind(':assign_id', $assign_ids[$a]);
+			
+			// Execute
+			if (!$this->db->execute()) {			
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	// Set user data
 	private function setUserData($row) {
 		$_SESSION['is_logged_in'] = true;

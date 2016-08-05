@@ -27,6 +27,7 @@ function getClassesByTerm($term) {
 function getAssignmentsByClass($class_id) {
 	$db = new Database();
 	$db->query('SELECT assignments.*,
+						assignments.id AS assign_id,
 						users.id,
 						users.email,
 						classes.*

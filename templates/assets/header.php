@@ -41,7 +41,7 @@
           <ul class="nav navbar-nav pull-right">
 			<?php if(isLoggedIn()) : ?>
 				<li><a href="gradebook.php"><span class="glyphicon glyphicon-book"></span> My Gradebook</a></li>
-				<li><a href="edit-class.php"><span class="glyphicon glyphicon-pencil"></span> Edit Class</a></li>
+				<li><a href="edit-class.php"><span class="glyphicon glyphicon-pencil"></span> Edit Classes</a></li>
 				<li><a href="about.php"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
 				<!-- Logout Link that acts as form -->
 				<form method="post" action="<?php echo BASE_URI; ?>logout.php" class="inline">
