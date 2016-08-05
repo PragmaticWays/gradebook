@@ -35,7 +35,7 @@
 				success: function(data) { 
 					$("#classes").html("");
 					for (var i = 0; i < data.length; i++) {
-						$("#classes").append('<a onclick="selectClass('+data[i]["class_id"]+')" class="list-group-item">'+data[i]["class_name"]+'<span class="grade pull-right inline">100%</span></a>');
+						$("#classes").append('<a onclick="selectClass('+data[i]["class_id"]+')" class="list-group-item">'+data[i]["class_name"]+'</a>');
 					}
 				},
 				dataType: "json"
@@ -62,6 +62,7 @@
 															  '<td><input type="text" name="due-date[]" class="form-control" value="'+data[i]["date"]+'"></td>'+
 															  '<td><input type="text" name="points[]" class="form-control" value="'+data[i]["points"]+'"></td>'+
 															  '<input type="hidden" name="assign_ids[]" value="'+data[i]["assign_id"]+'">'+
+															  '<input type="hidden" name="class_id[]" value="'+class_id+'">'+
 														   '</tr>');
 							totalPoints += parseInt(data[i]["points"]);
 							if (data[i]["score"] != '-') {

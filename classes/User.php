@@ -56,7 +56,7 @@ class User {
 		}
 	}
 	
-	public function updateClass($assign_ids, $weeks, $names, $duedates, $points) {
+	public function updateClass($assign_ids, $weeks, $names, $duedates, $points, $class_name, $term_name, $class_id) {
 		foreach ($assign_ids as $a => $b) {
 			$this->db->query("UPDATE assignments
 							  SET week = :week,
@@ -70,6 +70,36 @@ class User {
 			$this->db->bind(':name', $names[$a]);
 			$this->db->bind(':duedate', $duedates[$a]);
 			$this->db->bind(':point', $points[$a]);
+			$this->db->bind(':assign_id', $assign_ids[$a]);
+			
+			
+			// Execute
+			if (!$this->db->execute()) {			
+				return false;
+			}
+		}
+		// Update class name
+		$this->db->query("UPDATE classes 
+						  SET class_name = :class_name,
+							  term = :term
+						  WHERE id = :class_id");
+						  
+		$this->db->bind(':class_id', $class_id[0]);
+		$this->db->bind(':term', $term_name);
+		$this->db->bind(':class_name', $class_name);
+		if (!$this->db->execute()) return false;
+		
+		return true;
+	}
+	
+	public function updateScores($assign_ids, $scores) {
+		foreach ($assign_ids as $a => $b) {
+			$this->db->query("UPDATE assignments
+							  SET score = :score
+							  WHERE id = :assign_id"
+			);
+			// Bind values
+			$this->db->bind(':score', $scores[$a]);
 			$this->db->bind(':assign_id', $assign_ids[$a]);
 			
 			// Execute

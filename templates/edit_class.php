@@ -4,17 +4,17 @@
 <form role="form" method="post" action="edit-class.php">
 	<div class="col-md-8">
 		<div class="block">
-			<center><h2>Edit Class</h2></center>
+			<center><h2>Edit A Class</h2></center>
 				<table id="classTable" class="table">
 					<div class="row">
 						<div class="form-group">
 							<label class="col-xs-2 col-form-label">Class Name</label>
 							<div class="col-xs-5">
-								<input type="text" name="class" class="form-control" id="classNameInput">
+								<input type="text" name="className" class="form-control" id="classNameInput">
 							</div>
 							<label class="col-xs-1 col-form-label">Term:</label>
 							<div class="col-xs-4">
-								<select id="termInput" class="form-control">
+								<select id="termInput" class="form-control" name="termName">
 									<option value="Early Fall">Early Fall</option>
 									<option value="Late Fall">Late Fall</option>
 									<option value="Early Spring">Early Spring</option>
@@ -39,9 +39,11 @@
 						
 					</tbody>
 			</table>
-			<input type="submit" value="Submit" name="do_update" onClick="submit" class="btn btn-primary" />
-			<input type="button" value="Remove Row" onClick="deleteRow('classTable')" class="btn pull-right"/>
-			<input type="button" value="Add Row" onClick="addRow('classTable')" class="btn pull-right" style="margin-right: 10px;"/> 
+			<input type="submit" value="Save" name="do_update" onClick="submit" class="btn btn-primary" />
+			<input type="button" value="Delete Class" onClick="addRow('classTable')" class="btn btn-danger pull-right" style="margin: 0 5px;"/> 
+			<a href="new-class.php" type="button" value="Create New Class" class="btn btn-info pull-right" style="margin: 0 5px;">Create New Class</a> 
+			<input type="button" value="Remove Row" onClick="deleteRow('classTable')" class="btn pull-right" style="margin: 0 5px;"/>
+			<input type="button" value="Add Row" onClick="addRow('classTable')" class="btn pull-right" style="margin: 0 5px;"/> 
 		</div>
 	</div>
 </form>

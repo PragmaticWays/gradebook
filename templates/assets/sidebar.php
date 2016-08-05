@@ -27,7 +27,6 @@
 	</div>
 	 
 	<script>
-		
 		function selectTerm(term) {
 			$.ajax({
 				type: 'POST',
@@ -36,7 +35,7 @@
 				success: function(data) { 
 					$("#classes").html("");
 					for (var i = 0; i < data.length; i++) {
-						$("#classes").append('<a onclick="selectClass('+data[i]["class_id"]+')" class="list-group-item">'+data[i]["class_name"]+'<span class="grade pull-right inline">100%</span></a>');
+						$("#classes").append('<a onclick="selectClass('+data[i]["class_id"]+')" class="list-group-item">'+data[i]["class_name"]+'</a>');
 					}
 				},
 				dataType: "json"
@@ -49,6 +48,7 @@
 				url: 'getAssignments.php',  
 				data: "classID="+class_id,  
 				success: function(data) { 
+				console.log(data);
 					// Fill table with assignment data
 					    // Get add up total points, total score, and calc grade
 					var totalPoints = 0;
@@ -61,7 +61,9 @@
 														'<td>'+data[i]["name"]+'</td>'+
 														'<td>'+data[i]["date"]+'</td>'+
 														'<td>'+data[i]["points"]+'</td>'+
-														'<td><input type="text" name="" class="form-control scoreInput" value="'+data[i]["score"]+'"></td>'+
+														'<td><input onblur="updateGrade()" type="text" name="scores[]" class="form-control inputScore" value="'+data[i]["score"]+'"></td>'+
+														'<input type="hidden" name="assign_ids[]" value="'+data[i]["assign_id"]+'">'+
+														'<input type="hidden" name="class_id[]" value="'+data[i]["class_id"]+'">'+
 													  '</tr>');
 						totalPoints += parseInt(data[i]["points"]);
 						if (data[i]["score"] != '-') {
@@ -77,20 +79,25 @@
 			});
 		}
 
+		// If user presses enter on input field
 		$(function() {
 			$("#assignmentsTable").keypress(function (e) {
-				if (e.which == 13) {		
-					/*
-					$.ajax({
-						type: 'POST',
-						url: 'updateGrade.php',  
-						data: "scores="+scoresArray,  
-						success: function(data) { 
-							alert("here");
-						}
-					});*/
+				if (e.which == 13) {	
+					e.preventDefault();				
+					updateGrade();
 				}   
 			});
-		}); 
+		});
+		
+		function updateGrade() {
+			$.ajax({
+				type: 'POST',
+				url: $("#gradebookForm").attr("action"),
+				data: $("#gradebookForm").serialize(), 
+				success: function(response) { 
+					selectClass($("#gradebookForm").find('input[name="class_id[]"]').val());
+				},
+			});
+		}
 		
 	</script>

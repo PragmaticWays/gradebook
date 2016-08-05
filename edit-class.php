@@ -7,12 +7,15 @@ if (isLoggedIn()) {
 		$weeks = $_POST['week'];        	
 		$names = $_POST['name'];	   				
 		$duedates = $_POST['due-date'];  
-		$points = $_POST['points'];	   	
+		$points = $_POST['points'];	 
+		$class_name = $_POST['className'];
+		$term_name = $_POST['termName'];
+		$class_id = $_POST['class_id'];
 		
 		// Create User object
 		$user = new User();
 		
-		if ($user->updateClass($assign_ids, $weeks, $names, $duedates, $points)) {
+		if ($user->updateClass($assign_ids, $weeks, $names, $duedates, $points, $class_name, $term_name, $class_id)) {
 			redirect(BASE_URI, 'Your class has been updated.', 'success');
 		} else {
 			redirect('./', "We're having technical difficulties on our end. Please try again.", 'error');
