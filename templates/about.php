@@ -7,6 +7,9 @@
 				This application is only available to Columbia College students with a valid CougarTrack email.
 				Watch the video below to get a quick walk-around the application.	
 		</p>
+		<center>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/IHkfs65qeLs" frameborder="0" allowfullscreen></iframe>
+	</center>
 		<br>
 		
 		<h2>Why?</h2>

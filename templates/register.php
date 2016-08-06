@@ -8,7 +8,7 @@
 			<label>Name*</label> <input type="text" class="form-control" name="name" placeholder="Enter Your Name">
 		</div>
 		<div class="form-group">
-			<label>Email Address*</label> <input type="email" class="form-control" name="email" placeholder="Enter Your CougarTrack Email Address">
+			<label>Email Address*</label> <input type="email" class="form-control" name="email" placeholder="Enter Your School Email Address (Must end with .edu)">
 		</div>
 		<div class="form-group">
 			<label>Password*</label> <input type="password" class="form-control" name="password" placeholder="Enter a Password">

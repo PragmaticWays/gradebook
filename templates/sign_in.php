@@ -11,6 +11,11 @@
 	
 		<button class="btn btn-lg btn-primary btn-block" type="submit" name="do_login">Sign in</button>
 		<a href="register" class="btn btn-lg btn-blue btn-block">Create Account</a>
-	</form>	
+	</form>
+	
+	<center>
+	<h3>Find out more about this application</h3>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/IHkfs65qeLs" frameborder="0" allowfullscreen></iframe>
+	</center>
 	 
 <?php include('assets/footer.php'); ?>

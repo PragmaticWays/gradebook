@@ -22,7 +22,7 @@ class Validator{
 	
 	// Check if valid email
 	public function isValidEmail($email) {
-		if (preg_match("/^([a-zA-Z0-9]+)(@cougars.ccis.edu)$/", $email, $output_array)){
+		if (preg_match("/^([a-zA-Z0-9]+)(@)([a-zA-Z0-9.]+)(.edu)$/", $email, $output_array)){
 			if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
 				return true;
 			} else {
