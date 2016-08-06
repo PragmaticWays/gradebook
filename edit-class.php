@@ -2,7 +2,19 @@
 <?php
 
 if (isLoggedIn()) {
-	if(isset($_POST['do_update'])){ 
+	if (isset($_POST['delete_class'])) {
+		$class_id = $_POST['class_id'];
+		
+		// Create User object
+		$user = new User();
+		
+		if ($user->deleteClass($class_id)) {
+			redirect(BASE_URI, 'Your class has been deleted.', 'success');
+		} else {
+			redirect('./', "We're having technical difficulties on our end. Please try again.", 'error');
+		}
+		
+	} else if(isset($_POST['do_update'])){ 
 		$assign_ids = $_POST['assign_ids'];
 		$weeks = $_POST['week'];        	
 		$names = $_POST['name'];	   				

@@ -83,6 +83,7 @@
 					
 					$("#classNameInput").val(data[0]["class_name"]);
 					$("#termInput").val(data[0]["term"]);
+					
 				},
 				dataType: "json"
 			});

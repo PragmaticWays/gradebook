@@ -56,6 +56,44 @@ class User {
 		}
 	}
 	
+	public function newClass($weeks, $names, $duedates, $points, $class_name, $term_name) {
+		// Create new class in classes table
+		$this->db->query("INSERT INTO classes (class_name, user_id, term) VALUES (:class_name, :user_id, :term)");
+		$this->db->bind(':class_name', $class_name);
+		$this->db->bind(':user_id', $_SESSION['user_id']);
+		$this->db->bind(':term', $term_name);
+		
+		if (!$this->db->execute()) {			
+				return false;
+		}
+		
+		// Get ID of new class
+		$this->db->query("SELECT id FROM classes WHERE class_name = :class_name");
+		$this->db->bind(':class_name', $class_name);
+		$id = $this->db->single();
+		
+		// Insert assignments into assignments table with new class ID
+		foreach ($weeks as $a => $b) {
+			$this->db->query("INSERT INTO assignments (class_id, user_id, week, name, date, points, score)
+									VALUES (:class_id, :user_id, :week, :name, :date, :point, :score)");
+			// Bind values
+			$this->db->bind(':class_id', $id->id);
+			$this->db->bind(':user_id', $_SESSION['user_id']);
+			$this->db->bind(':week', $weeks[$a]);
+			$this->db->bind(':name', $names[$a]);
+			$this->db->bind(':date', $duedates[$a]);
+			$this->db->bind(':point', $points[$a]);
+			$this->db->bind(':score', '-');
+			
+				// Execute
+			if (!$this->db->execute()) {			
+				return false;
+			}
+		}
+		return true;
+		
+	}
+	
 	public function updateClass($assign_ids, $weeks, $names, $duedates, $points, $class_name, $term_name, $class_id) {
 		foreach ($assign_ids as $a => $b) {
 			$this->db->query("UPDATE assignments
@@ -108,6 +146,21 @@ class User {
 			}
 		}
 		return true;
+	}
+	
+	public function deleteClass($class_id) {
+		$this->db->query("DELETE FROM classes WHERE id = :class_id");
+		
+		// Bind values
+		$this->db->bind(':class_id', $class_id[0]);
+		
+		// Execute
+		if ($this->db->execute()) {			
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 	// Set user data

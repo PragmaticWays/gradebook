@@ -1,15 +1,7 @@
-<?php if(isset($_POST)==true && empty($_POST)==false){ 
-	$chkbox = $_POST['chk'];		// array
-	$weeks=$_POST['week'];        	// array
-	$names=$_POST['name'];	   		// array		
-	$duedates=$_POST['due-date'];  // array
-	$points=$_POST['points'];	   	// array
-}				
-?>
 <?php include('assets/header.php'); ?>
 <?php include('assets/sidebar.php'); ?>
 <script src="<?php echo BASE_URI; ?>templates/assets/js/addClassLogic.js"></script>
-<form role="form" method="post" action="<?php echo BASE_URI; ?>addClassLogic.php">
+<form role="form" method="post" action="<?php echo BASE_URI; ?>new-class.php">
 	<div class="col-md-8">
 		<div class="block">
 			<center><h2>New Class</h2></center>
@@ -18,11 +10,11 @@
 						<div class="form-group">
 							<label class="col-xs-2 col-form-label">Class Name</label>
 							<div class="col-xs-5">
-								<input type="text" name="class" class="form-control">
+								<input type="text" name="className" class="form-control">
 							</div>
 							<label class="col-xs-1 col-form-label">Term:</label>
 							<div class="col-xs-4">
-								<select id="term" class="form-control">
+								<select id="term" class="form-control" name="termName">
 									<option>Early Fall</option>
 									<option>Late Fall</option>
 									<option>Early Spring</option>
@@ -61,7 +53,7 @@
 						</tr>
 					</tbody>
 			</table>
-			<input type="button" value="Submit" onClick="submit" class="btn btn-primary" />
+			<input type="submit" name="create_class" value="Create" class="btn btn-primary" />
 			<input type="button" value="Remove Row" onClick="deleteRow('classTable')" class="btn pull-right"/>
 			<input type="button" value="Add Row" onClick="addRow('classTable')" class="btn pull-right" style="margin-right: 10px;"/> 
 		</div>
