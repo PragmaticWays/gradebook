@@ -45,7 +45,7 @@ function selectClass(class_id) {
 											  '</tr>');
 				
 				if (data[i]["score"] != '') {
-					totalScore += parseInt(data[i]["score"]);
+					totalScore += parseFloat(data[i]["score"]);
 					totalPoints += parseInt(data[i]["points"]);
 				}
 			}

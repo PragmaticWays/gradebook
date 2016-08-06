@@ -69,6 +69,17 @@ a:hover {
 	background: rgb(23,155,144) !important;
 	color: #eee !important;
 }
+.btn-primary:hover {
+	background: rgba(23,155,144,.7) !important;
+}
+
+.btn-blue {
+	background: rgb(0,40,85);
+	color: rgb(219,219,219);
+}
+.btn-blue:hover {
+	background: rgba(0,40,85,.7);
+}
 
 .block {
 	border-right: 1px solid rgb(23,155,144);

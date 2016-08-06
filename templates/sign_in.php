@@ -10,6 +10,7 @@
 		<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
 	
 		<button class="btn btn-lg btn-primary btn-block" type="submit" name="do_login">Sign in</button>
+		<a href="register" class="btn btn-lg btn-blue btn-block">Create Account</a>
 	</form>	
 	 
 <?php include('assets/footer.php'); ?>
