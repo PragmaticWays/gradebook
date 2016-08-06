@@ -65,12 +65,14 @@
 														'<input type="hidden" name="assign_ids[]" value="'+data[i]["assign_id"]+'">'+
 														'<input type="hidden" name="class_id[]" value="'+data[i]["class_id"]+'">'+
 													  '</tr>');
-						totalPoints += parseInt(data[i]["points"]);
-						if (data[i]["score"] != '-') {
+						
+						if (data[i]["score"] != '') {
 							totalScore += parseInt(data[i]["score"]);
+							totalPoints += parseInt(data[i]["points"]);
 						}
 					}
-					var grade = (totalScore / totalPoints) * 100;
+					var grade = 0;
+					if (totalPoints > 0) grade = (totalScore / totalPoints) * 100;
 					
 					$("#classNameHeader").html("");
 					$("#classNameHeader").html(data[0]["class_name"]+'<span class="grade pull-right">'+Math.round(grade * 100) / 100+'%</span>');
