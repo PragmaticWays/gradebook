@@ -4,6 +4,14 @@ body {
   color: #333;
 }
 
+h1, h2, h3, h4 {
+	color: rgb(0,40,85);
+}
+
+th {
+	color: rgb(23,155,144);
+}
+
 .Site {
   display: flex;
   min-height: 100vh;
@@ -63,14 +71,18 @@ a:hover {
 }
 
 .block {
-	border-right: 1px solid #aaa;
-	border-bottom: 1px solid #aaa;
+	border-right: 1px solid rgb(23,155,144);
+	border-bottom: 1px solid rgb(23,155,144);
 	padding: 10px;
 	background: white;
 	margin: 10px;
 }
-.block h3 {
+.block h2, .block h3 {
 	text-align: center;
+}
+#classNameHeader {
+	text-align: left;
+	margin-left: 20px;
 }
 
 .grade {
@@ -119,6 +131,56 @@ a:hover {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+#narrow-block {
+	width: 60%;
+	margin: 0 auto;
+}
+
+#social i{
+    font-size: 65px;
+    padding: 10px 0;
+    margin: 0 10px;
+}
+
+@media only screen and (max-width: 1500px) {
+    #social i {
+        font-size: 50px;
+    }
+}
+@media only screen and (max-width: 1050px) {
+    #social i {
+        font-size: 40px;
+    }
+	#narrow-block {
+	width: 75%;
+}
+}
+@media only screen and (max-width: 650px) {
+    #social i {
+        font-size: 25px;
+		margin: 0 5px;
+    }
+	#narrow-block {
+	width: 95%;
+}
+}
+    
+#social i {
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	-ms-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+}
+
+#social i:hover {
+	-webkit-transform:rotate(360deg);
+	-moz-transform:rotate(360deg);
+	-o-transform:rotate(360deg);
+	-ms-transform:rotate(360deg);
+	transform:rotate(360deg);
 }
 
 .footer{

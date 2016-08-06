@@ -1,9 +1,8 @@
 <?php include('assets/header.php'); ?>
 <?php include('assets/sidebar.php'); ?>
-<script src="templates/assets/js/bootstrap-table-editable.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script> 
 
-<form role="form" method="post" action="gradebook.php" id="gradebookForm" name="update_grade">
+<!-- Assignments list form -->
+<form role="form" method="post" action="gradebook.php" id="gradebookForm" name="update_grade" onsubmit="return validateForm()">
 	<div class="col-md-8">
 		<div class="block">
 			<h2 class="sub-header" id="classNameHeader">Select a Class<span class="grade pull-right">-</span></h2>

@@ -1,6 +1,6 @@
 <?php include('core/init.php'); ?>
 <?php 
-
+	// Helper function/file to sign a user into the system
 	if(isset($_POST['do_login'])) {
 	
 		// Get vars

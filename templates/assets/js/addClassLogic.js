@@ -1,5 +1,6 @@
+// This function creates 24 (23 plus the original) rows for assignments on 'new-class.php'
 function default24rows(tableID) {
-	for (var h = 0; h < 22; h++) {
+	for (var h = 0; h < 23; h++) {
 		var table = document.getElementById(tableID);
 		var rowCount = table.rows.length;
 		var row = table.insertRow(rowCount);
@@ -10,6 +11,7 @@ function default24rows(tableID) {
 	}
 }
 
+// This function adds a blank row on 'edit-class.php'
 function addRow(tableID) {
 	var table = document.getElementById(tableID);
 	var rowCount = table.rows.length;
@@ -28,6 +30,7 @@ function addRow(tableID) {
 	}
 }
 
+// This function removes all checked rows (from checkbox) on 'edit-class.php'
 function deleteRow(tableID) {
 	var table = document.getElementById(tableID); 
 	var rowCount = table.rows.length;
@@ -46,6 +49,7 @@ function deleteRow(tableID) {
 	} 
 }
 
+// This helper function helps reset all input fields to be blank - called from addRow() above
 function resetChildren( parentEl ){
     var len = parentEl.childNodes.length,
         i = 0,

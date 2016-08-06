@@ -1,7 +1,7 @@
      <div class="col-md-4">
 		<div class="sidebar">
 			<div class="block">
-				<h3>Classes</h3>
+				<center><h3>Classes</h3></center>
 				<hr>
 				<div class="row">
 					<label class="col-xs-2 col-form-label">

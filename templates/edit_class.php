@@ -41,7 +41,7 @@
 			</table>
 			<input type="submit" value="Save" name="do_update" onClick="submit" class="btn btn-primary" />
 			<input type="submit" value="Delete Class" name="delete_class" class="btn btn-danger pull-right" style="margin: 0 5px;"/>
-			<a href="new-class.php" type="button" value="Create New Class" class="btn btn-info pull-right" style="margin: 0 5px;">Create New Class</a> 
+			<a href="new-class" type="button" value="Create New Class" class="btn btn-info pull-right" style="margin: 0 5px;">Create New Class</a> 
 			<input type="button" value="Remove Row" onClick="deleteRow('classTable')" class="btn pull-right" style="margin: 0 5px;"/>
 			<input type="button" value="Add Row" onClick="addRow('classTable')" class="btn pull-right" style="margin: 0 5px;"/> 
 		</div>

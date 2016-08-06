@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  
+  <!-- 
+       |---------------------------------------------------------------|
+	   |   ***  ****   ***  *   *    ***  *    *     ***  ****  ****   |
+	   |  *   * *   * *   * ** **   *   * *    *    *   * *   * *   *  |
+	   |  ***** *   * ***** * * *   ***** *    *    ***** ****  *   *  |
+	   |  *   * *   * *   * *   *   *   * *    *    *   * *  *  *   *  |
+	   |  *   * ****  *   * *   *   *   * **** **** *   * *   * ****   |
+	   |---------------------------------------------------------------|
+  -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +32,7 @@
 
   <body class="Site">
 
+	<!-- Navbar navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -40,22 +51,25 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
 			<?php if(isLoggedIn()) : ?>
-				<li><a href="gradebook.php"><span class="glyphicon glyphicon-book"></span> My Gradebook</a></li>
-				<li><a href="edit-class.php"><span class="glyphicon glyphicon-pencil"></span> Edit Classes</a></li>
-				<li><a href="about.php"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+				<li><a href="./"><span class="glyphicon glyphicon-book"></span> My Gradebook</a></li>
+				<li><a href="edit-class"><span class="glyphicon glyphicon-pencil"></span> Edit Classes</a></li>
+				<li><a href="about"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
 				<!-- Logout Link that acts as form -->
 				<form method="post" action="<?php echo BASE_URI; ?>logout.php" class="inline">
 					<input type="hidden" name="do_logout" value="Logout">
 					<button type="submit" name="do_logout" value="Logout" class="logout-button"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
 				</form>
 			<?php else : ?>
-				<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Sign-In</a></li>
-				<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Create Account</a></li>
-				<li><a href="about.php"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+				<li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Sign-In</a></li>
+				<li><a href="register"><span class="glyphicon glyphicon-user"></span> Create Account</a></li>
+				<li><a href="about"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
 			<?php endif; ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-	    <div class="container Site-content">
+	
+	<!-- Site-content -->
+	<div class="container Site-content">
+		<!-- Display user info messages here -->
 		<?php displayMessage(); ?>

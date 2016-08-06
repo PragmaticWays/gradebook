@@ -56,6 +56,7 @@ class User {
 		}
 	}
 	
+	// Create a new class from 'new-class.php'
 	public function newClass($weeks, $names, $duedates, $points, $class_name, $term_name) {
 		// Create new class in classes table
 		$this->db->query("INSERT INTO classes (class_name, user_id, term) VALUES (:class_name, :user_id, :term)");
@@ -83,7 +84,7 @@ class User {
 			$this->db->bind(':name', $names[$a]);
 			$this->db->bind(':date', $duedates[$a]);
 			$this->db->bind(':point', $points[$a]);
-			$this->db->bind(':score', '-');
+			$this->db->bind(':score', '');
 			
 				// Execute
 			if (!$this->db->execute()) {			
@@ -94,9 +95,16 @@ class User {
 		
 	}
 	
+	// Update class data from 'edit-class.php'
 	public function updateClass($assign_ids, $weeks, $names, $duedates, $points, $class_name, $term_name, $class_id) {
 		
-		// => Update all assignments
+		/* 1. Update all assignments' data in assignments table
+		 * 2. Delete any rows that have been removed by 'addClassLogic.js'
+		 * 3. Insert any rows that have been added by 'addClassLogic.js'
+		 * 4. Update the class name and term in classes table
+		 */
+		
+		// => 1. Update all assignments
 		foreach ($assign_ids as $a => $b) {
 			$this->db->query("UPDATE assignments
 							  SET week = :week,
@@ -118,7 +126,7 @@ class User {
 		
 
 		
-		// => Delete any rows that have been removed
+		// => 2. Delete any rows that have been removed
 		$this->db->query("DELETE FROM assignments
 						  WHERE class_id = :class_id AND id NOT IN ('".join("','", $assign_ids)."')"
 		);
@@ -130,7 +138,7 @@ class User {
 		
 		
 		
-		// => Insert any rows that have been added
+		// => 3. Insert any rows that have been added
 		foreach ($assign_ids as $a => $b) {
 			if ($assign_ids[$a] == "") {
 			$this->db->query("INSERT INTO assignments (class_id, user_id, week, name, date, points, score)
@@ -142,7 +150,7 @@ class User {
 			$this->db->bind(':name', $names[$a]);
 			$this->db->bind(':date', $duedates[$a]);
 			$this->db->bind(':point', $points[$a]);
-			$this->db->bind(':score', '-');
+			$this->db->bind(':score', '');
 
 				// Execute
 				if (!$this->db->execute()) return false;
@@ -151,7 +159,7 @@ class User {
 			
 		}
 		
-		// => Update class name
+		// => 4. Update class name
 		$this->db->query("UPDATE classes 
 						  SET class_name = :class_name,
 							  term = :term
@@ -165,6 +173,7 @@ class User {
 		return true;
 	}
 	
+	// Updates the scores of the assignments from gradebook homepage
 	public function updateScores($assign_ids, $scores) {
 		foreach ($assign_ids as $a => $b) {
 			$this->db->query("UPDATE assignments
@@ -183,6 +192,7 @@ class User {
 		return true;
 	}
 	
+	// Deletes a class from 'edit-class.php'
 	public function deleteClass($class_id) {
 		$this->db->query("DELETE FROM classes WHERE id = :class_id");
 		

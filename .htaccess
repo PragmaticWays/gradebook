@@ -1,28 +1,3 @@
-RewriteEngine On    # Turn on the rewriting engine
-
-
-# Manually rewriting rules for pages to preserve user profile pages - need to fix later
-RewriteRule	   ^about$                about.php				  [NC,L]	# take out .php extention
-RewriteRule	   ^register$             register.php			  [NC,L]	# take out .php extention
-RewriteRule	   ^create$               create.php			  [NC,L]	# take out .php extention
-RewriteRule	   ^find-mentor$          find-mentor.php		  [NC,L]	# take out .php extention 
-RewriteRule	   ^topics$          	  topics.php		      [NC,L]	# take out .php extention 
-RewriteRule	   ^login$          	  login.php		      	  [NC,L]	# take out .php extention 
-
-# Rewrite topics page by category
-RewriteRule    ^topics/([A-Za-z0-9-]+)/?$    topics.php?category=$1    [NC,L]
-
-# Rewrite topics page by username
-RewriteRule    ^([A-Za-z0-9-]+)/topics?$    topics.php?user=$1    [NC,L]
-
-# Rewrite topics by user replies
-RewriteRule	   ^([A-Za-z0-9-]+)/replies?$    replies.php?user=$1    [NC,L]
-
-#Rewrite individual topic page 
-RewriteRule    ^([A-Za-z0-9-]+)/([A-Za-z0-9-!?]+)?$			topic.php?username=$1&title=$2			[NC,L]
-
-# Rewrite user profile pages to MyMentor.Codes/username
-RewriteRule    ^([A-Za-z0-9-]+)/?$    user.php?username=$1    [NC,L] 
-
-
-   
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
