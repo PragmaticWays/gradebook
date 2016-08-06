@@ -39,3 +39,13 @@ function is_active($category) {
 		}
 	}
 }
+
+// Remove empty cells
+function removeEmptyCells($array) {
+	foreach ($array as $a => $b) {
+		if ($array[$a] == "") {
+			unset($array[$a]);
+		}
+	}
+	return $array;
+}

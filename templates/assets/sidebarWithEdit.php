@@ -76,6 +76,8 @@
 														 '<td><input type="text" name="name[]" class="form-control"></td>'+
 														 '<td><input type="text" name="due-date[]" class="form-control"></td>'+
 														 '<td><input type="text" name="points[]" class="form-control"></td>'+
+														 '<input type="hidden" name="assign_ids[]" value="">'+
+														 '<input type="hidden" name="class_id[]" value="">'+
 													   '</tr>');
 					}
 					

@@ -21,6 +21,7 @@ function addRow(tableID) {
 			newcell.innerHTML = table.rows[1].cells[i].innerHTML;
 			resetChildren(newcell);
 		}
+		$(newcell).append('<input type="hidden" name="assign_ids[]" value=""><input type="hidden" name="class_id[]" value="">');
 	}else{
 		 alert("There is no way you have more than 80 assignments for this one class.");
 			   

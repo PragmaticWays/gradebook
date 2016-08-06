@@ -8,7 +8,12 @@ if (isLoggedIn()) {
 		$duedates = $_POST['due-date'];  
 		$points = $_POST['points'];
 		$class_name = $_POST['className'];
-		$term_name = $_POST['termName'];		
+		$term_name = $_POST['termName'];
+
+		$weeks = removeEmptyCells($weeks);
+		$names = removeEmptyCells($names);
+		$duedates = removeEmptyCells($duedates);
+		$points = removeEmptyCells($points);
 		
 		// Create User object
 		$user = new User();

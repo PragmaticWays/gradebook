@@ -95,6 +95,8 @@ class User {
 	}
 	
 	public function updateClass($assign_ids, $weeks, $names, $duedates, $points, $class_name, $term_name, $class_id) {
+		
+		// => Update all assignments
 		foreach ($assign_ids as $a => $b) {
 			$this->db->query("UPDATE assignments
 							  SET week = :week,
@@ -110,13 +112,46 @@ class User {
 			$this->db->bind(':point', $points[$a]);
 			$this->db->bind(':assign_id', $assign_ids[$a]);
 			
-			
 			// Execute
-			if (!$this->db->execute()) {			
-				return false;
-			}
+			if (!$this->db->execute()) return false;
 		}
-		// Update class name
+		
+
+		
+		// => Delete any rows that have been removed
+		$this->db->query("DELETE FROM assignments
+						  WHERE class_id = :class_id AND id NOT IN ('".join("','", $assign_ids)."')"
+		);
+		// Bind value
+		$this->db->bind(':class_id', $class_id[0]);
+		
+		// Execute
+		if (!$this->db->execute()) return false;
+		
+		
+		
+		// => Insert any rows that have been added
+		foreach ($assign_ids as $a => $b) {
+			if ($assign_ids[$a] == "") {
+			$this->db->query("INSERT INTO assignments (class_id, user_id, week, name, date, points, score)
+									VALUES (:class_id, :user_id, :week, :name, :date, :point, :score)");
+			// Bind values
+			$this->db->bind(':class_id', $class_id[0]);
+			$this->db->bind(':user_id', $_SESSION['user_id']);
+			$this->db->bind(':week', $weeks[$a]);
+			$this->db->bind(':name', $names[$a]);
+			$this->db->bind(':date', $duedates[$a]);
+			$this->db->bind(':point', $points[$a]);
+			$this->db->bind(':score', '-');
+
+				// Execute
+				if (!$this->db->execute()) return false;
+			}
+						
+			
+		}
+		
+		// => Update class name
 		$this->db->query("UPDATE classes 
 						  SET class_name = :class_name,
 							  term = :term
