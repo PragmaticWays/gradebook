@@ -1,4 +1,4 @@
-<?php require('core/init.php'); include_once("analyticstracking.php"); ?>
+<?php require('core/init.php');?>
 <?php
 
 if (!isLoggedIn()) {

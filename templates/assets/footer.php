@@ -7,3 +7,5 @@
 
   </body>
 </html>
+<!-- Include Google Tracking -->
+<?php include_once("../analyticstracking.php"); ?>
