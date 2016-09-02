@@ -4,14 +4,14 @@ function selectTerm(term) {
 	$.ajax({
 		type: 'POST',
 		url: 'getClasses.php',  
-		data: "term="+term,  
+		data: "term="+term,
+		dataType: "json",
 		success: function(data) { 
-			$("#classes").html("");
+			$("#classes").html("");	
 			for (var i = 0; i < data.length; i++) {
 				$("#classes").append('<a onclick="selectClass('+data[i]["class_id"]+')" class="list-group-item">'+data[i]["class_name"]+'</a>');
 			}
-		},
-		dataType: "json"
+		}
 	});
 }
 		
